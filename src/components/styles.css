@@ -1,0 +1,40 @@
+.table-container {
+  border-radius: 8px;
+  overflow: hidden; /* Ensure rounded corners */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
+}
+
+.table-header {
+  background-color: #8393c5;
+  color: white;
+}
+
+.table-header th {
+  padding: 12px;
+}
+
+.table-body td {
+  padding: 12px;
+}
+
+.table-row {
+  background-color: white; /* Ensure background is white for rows */
+}
+
+.table-row:nth-child(even) {
+  background-color: #f9f9f9; /* Add subtle striping */
+}
+
+.table-actions button {
+  margin-right: 8px;
+}
+
+.table-actions .edit-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.table-actions .delete-button {
+  background-color: #b72430;
+  color: white;
+}
