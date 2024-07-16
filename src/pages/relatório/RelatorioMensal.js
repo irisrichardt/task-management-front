@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { fetchTeams } from "../services/teamService";
-import { fetchUsers } from "../services/userService";
-import { fetchTasks } from "../services/authService";
+import { fetchTeams } from "../../services/teamService";
+import { fetchUsers } from "../../services/userService";
+import { fetchTasks } from "../../services/taskService";
 import {
   Page,
   Text,

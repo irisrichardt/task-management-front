@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { login } from "../services/authService";
-import loginImage from "../assets/workflow_image.png";
+import { login } from "../../services/authService";
+import loginImage from "../../assets/workflow_image.png";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 
 function Login() {

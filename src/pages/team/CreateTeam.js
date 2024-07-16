@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { createTeam, fetchTeamById, updateTeam } from "../services/teamService";
-import Navbar from "./Navbar";
-import "./styles.css";
+import {
+  createTeam,
+  fetchTeamById,
+  updateTeam,
+} from "../../services/teamService";
+import Navbar from "../../components/Navbar";
+import "../../components/styles.css";
 
 function CreateTeam({ isEditMode = false }) {
   const { id } = useParams();

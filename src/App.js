@@ -5,16 +5,16 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import Login from "./components/Login";
-import Home from "./components/Home";
-import CreateTask from "./components/CreateTask";
-import CreateDev from "./components/CreateDev";
-import CreateTeam from "./components/CreateTeam";
+import Login from "./pages/login/Login";
+import Home from "./pages/home/Home";
+import CreateTask from "./pages/task/CreateTask";
+import CreateDev from "./pages/user/CreateDev";
+import CreateTeam from "./pages/team/CreateTeam";
 import { getToken } from "./services/authService";
-import UserTable from "./components/UserTable";
-import TaskTable from "./components/TaskTable";
-import TeamTable from "./components/TeamTable";
-import RelatorioMensal from "./components/RelatorioMensal";
+import UserTable from "./pages/user/UserTable";
+import TaskTable from "./pages/task/TaskTable";
+import TeamTable from "./pages/team/TeamTable";
+import RelatorioMensal from "./pages/relatório/RelatorioMensal";
 
 function App() {
   const PrivateRoute = ({ component: Component, ...rest }) => {

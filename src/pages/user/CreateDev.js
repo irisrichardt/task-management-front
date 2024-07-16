@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { createDev, fetchDevById, updateDev } from "../services/userService";
-import Navbar from "./Navbar";
-import "./styles.css";
+import { createDev, fetchDevById, updateDev } from "../../services/userService";
+import Navbar from "../../components/Navbar";
+import "../../components/styles.css";
 
 function CreateDev({ isEditMode = false }) {
   const { id } = useParams();

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { deleteTeam, fetchTeams } from "../services/teamService";
+import { deleteTeam, fetchTeams } from "../../services/teamService";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import "./styles.css";
+import Navbar from "../../components/Navbar";
+import "../../components/styles.css";
 
 function TeamTable() {
   const [menuOpen, setMenuOpen] = useState(false);

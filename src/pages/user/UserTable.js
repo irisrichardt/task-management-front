@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { fetchUsers, deleteUser } from "../services/userService";
+import { fetchUsers, deleteUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import "./styles.css";
+import Navbar from "../../components/Navbar";
+import "../../components/styles.css";
 
 function UserTable() {
   const [menuOpen, setMenuOpen] = useState(false);

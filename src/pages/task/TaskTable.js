@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { fetchTasks, deleteTask } from "../services/authService";
+import { fetchTasks, deleteTask } from "../../services/taskService";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import Navbar from "./Navbar";
-import "./styles.css";
+import Navbar from "../../components/Navbar";
+import "../../components/styles.css";
 
 function TaskTable() {
   const [menuOpen, setMenuOpen] = useState(false);

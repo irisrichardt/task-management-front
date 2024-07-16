@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./Navbar";
-import { fetchTasks, updateTask } from "../services/authService";
+import Navbar from "../../components/Navbar";
+import { fetchTasks, updateTask } from "../../services/taskService";
 import { IconButton, Tooltip } from "@material-ui/core";
 import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 import EditIcon from "@material-ui/icons/Edit";
 
-import "./Board.css";
+import "./Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
