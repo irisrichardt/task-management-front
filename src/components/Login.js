@@ -32,7 +32,7 @@ function Login() {
             alt="Login"
             className="object-cover h-full w-full"
           />
-          <div className="absolute inset-0 bg-black opacity-50"></div>
+          <div className="absolute inset-0 bg-black opacity-10"></div>
         </div>
       </div>
       <div className="flex w-1/2 items-center justify-center">
