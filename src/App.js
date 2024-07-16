@@ -12,6 +12,9 @@ import CreateDev from "./components/CreateDev";
 import CreateTeam from "./components/CreateTeam";
 import { getToken } from "./services/authService";
 import UserTable from "./components/UserTable";
+import TaskTable from "./components/TaskTable";
+import TeamTable from "./components/TeamTable";
+import RelatorioMensal from "./components/RelatorioMensal";
 
 function App() {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -49,6 +52,10 @@ function App() {
           }
         />
         <Route
+          path="/tasks/lista"
+          element={getToken() ? <TaskTable /> : <Navigate to="/login" />}
+        />
+        <Route
           path="/create-dev"
           element={getToken() ? <CreateDev /> : <Navigate to="/login" />}
         />
@@ -59,6 +66,24 @@ function App() {
         <Route
           path="/users/lista"
           element={getToken() ? <UserTable /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/equipe/lista"
+          element={getToken() ? <TeamTable /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/edit-teams/:id"
+          element={
+            getToken() ? (
+              <CreateTeam isEditMode={true} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/relatorios/mensal"
+          element={getToken() ? <RelatorioMensal /> : <Navigate to="/login" />}
         />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>

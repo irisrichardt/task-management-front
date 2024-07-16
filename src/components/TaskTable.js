@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { fetchTasks, deleteTask } from "../services/authService";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
-import "./styles.css"; // Adjust the import path as necessary
+import Navbar from "./Navbar";
+import "./styles.css";
 
 function TaskTable() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [tasks, setTasks] = useState([]);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -40,46 +42,52 @@ function TaskTable() {
   };
 
   return (
-    <div className="p-6">
-      {error && <p className="text-red-500">{error}</p>}
-      <div className="table-container">
-        <table className="min-w-full bg-white border">
-          <thead className="table-header">
-            <tr>
-              <th className="py-2 text-center">Título</th>
-              <th className="py-2 text-center">Descrição</th>
-              <th className="py-2 text-center">Status</th>
-              <th className="py-2 text-center">Data criação</th>
-              <th className="py-2 text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody className="table-body">
-            {tasks.map((task) => (
-              <tr key={task.id} className="border-t table-row text-center">
-                <td className="py-2 px-4">{task.title}</td>
-                <td className="py-2 px-4">{task.description}</td>
-                <td className="py-2 px-4">{task.status}</td>
-                <td className="py-2 px-4">{formatDate(task.expirationDate)}</td>
-                <td className="py-2 px-4 table-actions">
-                  <button
-                    onClick={() => handleEdit(task.id)}
-                    className="p-2 mr-2 edit-button rounded"
-                  >
-                    Editar
-                  </button>
-                  <button
-                    onClick={() => handleDelete(task.id)}
-                    className="p-2 delete-button rounded"
-                  >
-                    Deletar
-                  </button>
-                </td>
+    <>
+      <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
+      <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
+        {error && <p className="text-red-500">{error}</p>}
+        <div className="table-container p-6">
+          <h2 className="text-2xl font-bold mb-4">Lista de desenvolvedores</h2>
+          <table className="min-w-full bg-white border rounded-lg shadow-lg">
+            <thead className="table-header">
+              <tr>
+                <th className="py-2 text-center">Título</th>
+                <th className="py-2 text-center">Descrição</th>
+                <th className="py-2 text-center">Status</th>
+                <th className="py-2 text-center">Data criação</th>
+                <th className="py-2 text-center">Ações</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="table-body">
+              {tasks.map((task) => (
+                <tr key={task.id} className="border-t table-row text-center">
+                  <td className="py-2 px-4">{task.title}</td>
+                  <td className="py-2 px-4">{task.description}</td>
+                  <td className="py-2 px-4">{task.status}</td>
+                  <td className="py-2 px-4">
+                    {formatDate(task.expirationDate)}
+                  </td>
+                  <td className="py-2 px-4 table-actions">
+                    <button
+                      onClick={() => handleEdit(task.id)}
+                      className="p-2 mr-2 edit-button rounded"
+                    >
+                      Editar
+                    </button>
+                    <button
+                      onClick={() => handleDelete(task.id)}
+                      className="p-2 delete-button rounded"
+                    >
+                      Deletar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 

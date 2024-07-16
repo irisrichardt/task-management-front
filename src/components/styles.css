@@ -38,3 +38,12 @@
   background-color: #b72430;
   color: white;
 }
+
+.wrapper {
+  display: flex;
+}
+
+.column {
+  flex: 0 1 auto;
+  max-width: 50%;
+}

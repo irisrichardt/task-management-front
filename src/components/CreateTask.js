@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createTask, fetchTaskById, updateTask } from "../services/authService";
 import Navbar from "./Navbar";
-import "./styles.css"; // Adjust the import path as necessary
+import "./styles.css";
 
 function CreateTask({ isEditMode = false }) {
   const { id } = useParams();
@@ -63,10 +63,10 @@ function CreateTask({ isEditMode = false }) {
       <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-          <h1 className="text-3xl font-bold mb-2 text-left">Nova atividade</h1>
-          <p className="text-lg mb-6 text-left">
-            Preencha o formulário para cadastrar uma nova atividade
-          </p>
+          <h1 className="text-3xl font-bold mb-2 text-left">
+            {isEditMode ? "Editar atividade" : "Criar nova atividade"}
+          </h1>
+          <p className="text-lg mb-6 text-left">Preencha o formulário abaixo</p>
           <h2 className="text-2xl font-bold mb-6 text-center">
             {isEditMode ? "Editar atividade" : "Criar nova atividade"}
           </h2>

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { createTask, fetchTaskById, updateTask } from "../services/authService";
+import { createTeam, fetchTeamById, updateTeam } from "../services/teamService";
 import Navbar from "./Navbar";
-import "./styles.css"; // Adjust the import path as necessary
+import "./styles.css";
 
 function CreateTeam({ isEditMode = false }) {
   const { id } = useParams();
@@ -14,12 +14,12 @@ function CreateTeam({ isEditMode = false }) {
 
   useEffect(() => {
     if (isEditMode && id) {
-      fetchTaskById(id)
-        .then((task) => {
-          setName(task.name);
+      fetchTeamById(id)
+        .then((team) => {
+          setName(team.name);
         })
         .catch((err) => {
-          setError("Failed to load task");
+          setError("Failed to load team");
         });
     }
   }, [isEditMode, id]);
@@ -28,22 +28,22 @@ function CreateTeam({ isEditMode = false }) {
     e.preventDefault();
     try {
       if (isEditMode) {
-        await updateTask(id, name);
+        await updateTeam(id, name);
       } else {
-        await createTask(name);
+        await createTeam(name);
       }
       setName("");
       setError("");
       setCreated(true);
     } catch (err) {
       console.error("Error:", err);
-      setError("Failed to save task");
+      setError("Failed to save team");
     }
   };
 
   useEffect(() => {
     if (created) {
-      navigate("/home");
+      navigate("/equipe/lista");
     }
   }, [created, navigate]);
 
@@ -80,7 +80,7 @@ function CreateTeam({ isEditMode = false }) {
                 type="submit"
                 className="bg-green-600 text-white py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
               >
-                {isEditMode ? "Atualizar atividade" : "Salvar"}
+                {isEditMode ? "Atualizar equipe" : "Salvar"}
               </button>
               <button
                 type="button"

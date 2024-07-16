@@ -141,7 +141,7 @@ function Navbar({ setMenuOpen, menuOpen }) {
                 </li>
                 <li>
                   <Link
-                    to="/home"
+                    to="/tasks/lista"
                     className="text-white block py-2 px-4 hover:bg-customLilas"
                   >
                     Lista de atividades
