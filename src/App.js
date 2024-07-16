@@ -14,7 +14,7 @@ import { getToken } from "./services/authService";
 import UserTable from "./pages/user/UserTable";
 import TaskTable from "./pages/task/TaskTable";
 import TeamTable from "./pages/team/TeamTable";
-import RelatorioMensal from "./pages/relatório/RelatorioMensal";
+import RelatorioMensal from "./pages/relatorio/RelatorioMensal";
 
 function App() {
   const PrivateRoute = ({ component: Component, ...rest }) => {
