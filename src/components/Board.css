@@ -1,0 +1,105 @@
+/* Reset de estilo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Estilos para o cabeçalho */
+header > span {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #6b778c;
+  letter-spacing: 0.02rem;
+}
+
+header > h1 {
+  color: #182b4d;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+/* Margem direita */
+.mr-15 {
+  margin-right: 15px !important;
+}
+
+/* Layout das colunas */
+.columns {
+  display: flex;
+  gap: 15px;
+  padding: 16px;
+}
+
+/* Estilo da coluna */
+.column {
+  flex: 1;
+  background-color: #f4f5f7;
+  height: 100dvh;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho da coluna */
+.column__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.column__title {
+  color: #4d5c76;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Cards dentro da coluna */
+.column__cards {
+  height: calc(100dvh - 80px);
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Estilo dos cards */
+.card {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #dfe1e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4d5c76;
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Conteúdo do card */
+.card__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__text {
+  flex: 1;
+}
+
+/* Destaque da coluna */
+.column--highlight {
+  background-color: #deebff;
+  border: 2px solid #2482ff;
+}
+
+/* Estilos para a mensagem de erro */
+.error {
+  color: red;
+  margin-bottom: 16px;
+}

@@ -4,6 +4,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow */
 }
 
+.titule {
+  color: #182b4d;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 .table-header {
   background-color: #8393c5;
   color: white;

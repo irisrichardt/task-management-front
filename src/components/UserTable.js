@@ -40,7 +40,7 @@ function UserTable() {
       <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         <div className="table-container p-6">
-          <h2 className="text-2xl font-bold mb-4">Lista de desenvolvedores</h2>
+          <h1 className="titule mb-4">Lista de desenvolvedores</h1>
           {error && <p className="text-red-500">{error}</p>}
           <table className="min-w-full bg-white border rounded-lg shadow-lg">
             <thead className="table-header bg-[#8393C5] text-white">

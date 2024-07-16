@@ -16,15 +16,12 @@ function Navbar({ setMenuOpen, menuOpen }) {
 
   return (
     <div>
-      {/* Navbar */}
       <nav className="bg-customLilas p-4 flex justify-between items-center h-16 w-full">
-        {/* Botão do menu */}
         <div className="flex items-center">
           <button
             className="text-white mr-4 focus:outline-none"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {/* Ícone para indicar o estado do menu */}
             {menuOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -57,13 +54,11 @@ function Navbar({ setMenuOpen, menuOpen }) {
               </svg>
             )}
           </button>
-          {/* Nome do app */}
           <div className="text-white text-lg font-semibold">
             <Link to="/home">WorkFlow</Link>
           </div>
         </div>
 
-        {/* Botão de logout */}
         <div>
           <button
             onClick={handleLogout}
@@ -74,16 +69,13 @@ function Navbar({ setMenuOpen, menuOpen }) {
         </div>
       </nav>
 
-      {/* Sidebar */}
       <div
-        className={`bg-customLilas2 w-64 h-full absolute top-16 left-0 z-10 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-customLilas2 w-64 h-[125%] absolute top-16 left-0 transform transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
         <div className="p-4">
-          {/* Opções do menu */}
           <div className="pb-4 border-b border-white">
-            {/* Opções de Dashboard */}
             <Link
               to="/home"
               className="text-white block py-2 px-4 hover:bg-customLilas"
@@ -93,7 +85,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
           </div>
 
           <div className="mt-4 pb-4 border-b border-white">
-            {/* Opções de Atividades */}
             <div className="flex items-center justify-between">
               <span className="text-white">Atividades</span>
               <button
@@ -152,7 +143,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
           </div>
 
           <div className="mt-4 pb-4 border-b border-white">
-            {/* Opções de Equipe */}
             <div className="flex items-center justify-between">
               <span className="text-white">Equipe</span>
               <button
@@ -227,7 +217,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
           </div>
 
           <div className="mt-4 pb-4 border-b border-white">
-            {/* Opções de Relatórios */}
             <div className="flex items-center justify-between">
               <span className="text-white">Relatórios</span>
               <button
@@ -267,14 +256,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
               <ul className="ml-4">
                 <li>
                   <Link
-                    to="/relatorios/geral"
-                    className="text-white block py-2 px-4 hover:bg-customLilas"
-                  >
-                    Relatório Geral
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     to="/relatorios/mensal"
                     className="text-white block py-2 px-4 hover:bg-customLilas"
                   >
@@ -286,7 +267,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
           </div>
 
           <div className="mt-4 pb-4 border-b border-white">
-            {/* Opções de Configurações */}
             <div className="flex items-center justify-between">
               <span className="text-white">Configurações</span>
               <button
@@ -330,14 +310,6 @@ function Navbar({ setMenuOpen, menuOpen }) {
                     className="text-white block py-2 px-4 hover:bg-customLilas"
                   >
                     Perfil
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/configuracoes/conta"
-                    className="text-white block py-2 px-4 hover:bg-customLilas"
-                  >
-                    Conta
                   </Link>
                 </li>
               </ul>

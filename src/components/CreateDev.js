@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { createDev, fetchDevById, updateDev } from "../services/userService";
 import Navbar from "./Navbar";
-import "./styles.css"; // Ajuste o caminho conforme necessário
+import "./styles.css";
 
 function CreateDev({ isEditMode = false }) {
   const { id } = useParams();

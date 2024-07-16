@@ -47,7 +47,7 @@ function TaskTable() {
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         {error && <p className="text-red-500">{error}</p>}
         <div className="table-container p-6">
-          <h2 className="text-2xl font-bold mb-4">Lista de desenvolvedores</h2>
+          <h1 className="titule mb-4">Lista de atividades</h1>
           <table className="min-w-full bg-white border rounded-lg shadow-lg">
             <thead className="table-header">
               <tr>
