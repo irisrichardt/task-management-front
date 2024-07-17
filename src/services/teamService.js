@@ -84,3 +84,39 @@ export async function deleteTeam(teamId) {
     throw new Error("Failed to delete team");
   }
 }
+
+export const fetchDevs = async () => {
+  const response = await fetch(`${API_URL}/devs`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  return response.data;
+};
+
+export const assignDevToTeam = async (teamId, userId) => {
+  const token = getToken();
+  const response = await fetch(`${API_URL}/teams/${teamId}/members/${userId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+
+export async function removeMemberFromTeam(teamId, memberId) {
+  const token = getToken();
+  const response = await fetch(
+    `${API_URL}/teams/${teamId}/members/${memberId}`,
+    {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error("Failed to remove member from team");
+  }
+}

@@ -4,9 +4,14 @@ import {
   createTeam,
   fetchTeamById,
   updateTeam,
+  removeMemberFromTeam,
 } from "../../services/teamService";
 import Navbar from "../../components/Navbar";
 import "../../components/styles.css";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
+import CloseIcon from "@material-ui/icons/Close";
+import PersonIcon from "@material-ui/icons/PersonAdd";
 
 function CreateTeam({ isEditMode = false }) {
   const { id } = useParams();
@@ -15,15 +20,17 @@ function CreateTeam({ isEditMode = false }) {
   const [error, setError] = useState("");
   const [created, setCreated] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [teamMembers, setTeamMembers] = useState([]);
 
   useEffect(() => {
     if (isEditMode && id) {
       fetchTeamById(id)
         .then((team) => {
           setName(team.name);
+          setTeamMembers(team.members || []);
         })
         .catch((err) => {
-          setError("Failed to load team");
+          setError("Falha ao carregar equipe");
         });
     }
   }, [isEditMode, id]);
@@ -40,8 +47,8 @@ function CreateTeam({ isEditMode = false }) {
       setError("");
       setCreated(true);
     } catch (err) {
-      console.error("Error:", err);
-      setError("Failed to save team");
+      console.error("Erro:", err);
+      setError("Falha ao salvar equipe");
     }
   };
 
@@ -52,7 +59,23 @@ function CreateTeam({ isEditMode = false }) {
   }, [created, navigate]);
 
   const handleCancel = () => {
-    navigate("/home");
+    navigate("/equipe/lista");
+  };
+
+  const handleAddMembers = () => {
+    navigate("/assign-dev-to-team");
+  };
+
+  const handleRemoveMember = async (memberId) => {
+    try {
+      await removeMemberFromTeam(id, memberId);
+      setTeamMembers((prevMembers) =>
+        prevMembers.filter((member) => member.id !== memberId)
+      );
+    } catch (err) {
+      console.error("Erro ao remover membro da equipe:", err);
+      setError("Falha ao remover membro da equipe");
+    }
   };
 
   return (
@@ -60,17 +83,17 @@ function CreateTeam({ isEditMode = false }) {
       <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
-          <h1 className="text-3xl font-bold mb-2 text-left">Nova equipe</h1>
+          <h1 className="text-3xl font-bold mb-2 text-left">
+            {isEditMode ? "Editar equipe" : "Nova equipe"}
+          </h1>
           <p className="text-lg mb-6 text-left">
-            Preencha o formulário para cadastrar uma nova equipe
+            Preencha o formulário para {isEditMode ? "editar" : "criar"} uma{" "}
+            {isEditMode ? "equipe existente" : "nova equipe"}
           </p>
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            {isEditMode ? "Editar equipe" : "Criar nova equipe"}
-          </h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="form-group">
               <label className="block text-sm font-medium text-gray-700">
-                Nome
+                Nome:
               </label>
               <input
                 type="text"
@@ -79,6 +102,41 @@ function CreateTeam({ isEditMode = false }) {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
+            {teamMembers.length > 0 && (
+              <div className="form-group">
+                <div className="flex justify-between">
+                  <label className="block text-sm font-medium text-gray-700 mt-4 items-center">
+                    Membros da equipe:
+                  </label>
+                  <Tooltip title="Criar atividade">
+                    <IconButton onClick={handleAddMembers}>
+                      <PersonIcon />
+                    </IconButton>
+                  </Tooltip>
+                </div>
+                <div className="border-2 border-gray-200 rounded-md p-2">
+                  <ul className="divide-y divide-gray-200">
+                    {teamMembers.map((member) => (
+                      <li
+                        key={member.id}
+                        className="py-2 flex items-center justify-between"
+                      >
+                        <span>{member.username}</span>
+                        <Tooltip title="Remover usuário" placement="top">
+                          <IconButton
+                            size="small"
+                            aria-label="delete"
+                            onClick={() => handleRemoveMember(member.id)}
+                          >
+                            <CloseIcon />
+                          </IconButton>
+                        </Tooltip>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            )}
             <div className="flex justify-between">
               <button
                 type="submit"

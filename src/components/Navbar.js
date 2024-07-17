@@ -212,6 +212,14 @@ function Navbar({ setMenuOpen, menuOpen }) {
                     Lista de equipes
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/assign-dev-to-team"
+                    className="text-white block py-2 px-4 hover:bg-customLilas"
+                  >
+                    Membros - Equipes
+                  </Link>
+                </li>
               </ul>
             )}
           </div>

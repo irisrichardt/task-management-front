@@ -15,13 +15,30 @@ function TaskTable() {
     const getTasks = async () => {
       try {
         const data = await fetchTasks();
-        setTasks(data);
+        const transformedTasks = data.map((task) => ({
+          ...task,
+          status: transformStatus(task.status),
+        }));
+        setTasks(transformedTasks);
       } catch (err) {
         setError("Failed to fetch tasks");
       }
     };
     getTasks();
   }, []);
+
+  const transformStatus = (status) => {
+    switch (status) {
+      case "DONE":
+        return "CONCLUÍDA";
+      case "TO_DO":
+        return "PENDENTE";
+      case "IN_PROGRESS":
+        return "EM ANDAMENTO";
+      default:
+        return status;
+    }
+  };
 
   const handleDelete = async (taskId) => {
     try {
@@ -38,7 +55,7 @@ function TaskTable() {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    return format(date, "dd/MM/yyyy"); // Format date as dd/MM/yyyy
+    return format(date, "dd/MM/yyyy");
   };
 
   return (

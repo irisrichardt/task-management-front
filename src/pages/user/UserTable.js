@@ -14,13 +14,28 @@ function UserTable() {
     const getUsers = async () => {
       try {
         const data = await fetchUsers();
-        setUsers(data);
+        const transformedUsers = data.map((user) => ({
+          ...user,
+          gender: transformGender(user.gender),
+        }));
+        setUsers(transformedUsers);
       } catch (err) {
         setError("Failed to fetch users");
       }
     };
     getUsers();
   }, []);
+
+  const transformGender = (gender) => {
+    switch (gender) {
+      case "male":
+        return "Masculino";
+      case "female":
+        return "Feminino";
+      default:
+        return "Outro";
+    }
+  };
 
   const handleDelete = async (userId) => {
     try {

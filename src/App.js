@@ -15,6 +15,7 @@ import UserTable from "./pages/user/UserTable";
 import TaskTable from "./pages/task/TaskTable";
 import TeamTable from "./pages/team/TeamTable";
 import RelatorioMensal from "./pages/relatorio/RelatorioMensal";
+import AssignDevToTeam from "./pages/team/AssignDevToTeam";
 
 function App() {
   const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -84,6 +85,10 @@ function App() {
         <Route
           path="/relatorios/mensal"
           element={getToken() ? <RelatorioMensal /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/assign-dev-to-team"
+          element={getToken() ? <AssignDevToTeam /> : <Navigate to="/login" />}
         />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
