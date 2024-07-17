@@ -70,7 +70,7 @@ function Navbar({ setMenuOpen, menuOpen }) {
       </nav>
 
       <div
-        className={`bg-customLilas2 w-64 h-[125%] absolute top-16 left-0 transform transition-transform duration-300 ease-in-out ${
+        className={`bg-customLilas2 w-64 h-[135%] absolute top-16 left-0 transform transition-transform duration-300 ease-in-out ${
           menuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
