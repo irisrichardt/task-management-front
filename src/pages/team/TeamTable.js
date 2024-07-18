@@ -3,6 +3,8 @@ import { deleteTeam, fetchTeams } from "../../services/teamService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import "../../components/styles.css";
+import { IconButton, Tooltip } from "@material-ui/core";
+import GroupAddIcon from "@material-ui/icons/GroupAdd";
 
 function TeamTable() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -43,14 +45,15 @@ function TeamTable() {
     <>
       <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
-        <button
-          onClick={handleCreateTeam}
-          className="p-2 mb-6 bg-green-500 text-white rounded ml-8"
-        >
-          Nova equipe
-        </button>
         <div className="table-container p-6">
-          <h1 className="titule mb-4">Lista de equipes</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="titule mb-4">Lista de equipes</h1>
+            <Tooltip title="Criar equipe">
+              <IconButton className="mr-15" onClick={handleCreateTeam}>
+                <GroupAddIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
           {error && <p className="text-red-500">{error}</p>}
           <table className="min-w-full bg-white border rounded-lg shadow-lg">
             <thead className="table-header bg-[#8393C5] text-white">

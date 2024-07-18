@@ -45,26 +45,26 @@ export async function createDev({
   }
 }
 
-export async function updateDev(
-  id,
-  title,
-  description,
-  status,
-  expirationDate
-) {
+export async function updateDev(id, username, name, birthDate, gender, email) {
   const token = getToken();
-  const response = await fetch(`${API_URL}/task/${id}`, {
+  const response = await fetch(`${API_URL}/users/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ title, description, status, expirationDate }),
+    body: JSON.stringify({
+      username,
+      name,
+      birthDate,
+      gender,
+      email,
+    }),
   });
 
   if (!response.ok) {
     const errorData = await response.json();
-    throw new Error(errorData.message || "Failed to update task");
+    throw new Error(errorData.message || "Failed to update user");
   }
 
   return await response.json();
@@ -72,14 +72,14 @@ export async function updateDev(
 
 export async function fetchDevById(id) {
   const token = getToken();
-  const response = await fetch(`${API_URL}/task/${id}`, {
+  const response = await fetch(`${API_URL}/users/${id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   });
 
   if (!response.ok) {
-    throw new Error("Failed to fetch task");
+    throw new Error("Failed to fetch user");
   }
 
   return await response.json();

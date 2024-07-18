@@ -3,6 +3,9 @@ import { fetchUsers, deleteUser } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import "../../components/styles.css";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import Tooltip from "@material-ui/core/Tooltip";
+import IconButton from "@material-ui/core/IconButton";
 
 function UserTable() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,6 +40,10 @@ function UserTable() {
     }
   };
 
+  const handleCreateUser = () => {
+    navigate("/create-dev");
+  };
+
   const handleDelete = async (userId) => {
     try {
       await deleteUser(userId);
@@ -46,7 +53,7 @@ function UserTable() {
     }
   };
 
-  const handleEdit = (userId) => {
+  const handleEditUser = (userId) => {
     navigate(`/edit-user/${userId}`);
   };
 
@@ -55,7 +62,14 @@ function UserTable() {
       <Navbar setMenuOpen={setMenuOpen} menuOpen={menuOpen} />
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         <div className="table-container p-6">
-          <h1 className="titule mb-4">Lista de desenvolvedores</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="titule">Lista de desenvolvedores</h1>
+            <Tooltip title="Novo desenvolvedor">
+              <IconButton className="mr-15" onClick={() => handleCreateUser()}>
+                <PersonAddIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
           {error && <p className="text-red-500">{error}</p>}
           <table className="min-w-full bg-white border rounded-lg shadow-lg">
             <thead className="table-header bg-[#8393C5] text-white">
@@ -80,7 +94,7 @@ function UserTable() {
                   <td className="py-2 px-4">{user.email}</td>
                   <td className="py-2 px-4 table-actions">
                     <button
-                      onClick={() => handleEdit(user.id)}
+                      onClick={() => handleEditUser(user.id)}
                       className="p-2 mr-2 edit-button rounded bg-yellow-500 text-white"
                     >
                       Editar

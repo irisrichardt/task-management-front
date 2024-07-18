@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import Navbar from "../../components/Navbar";
 import "../../components/styles.css";
+import { IconButton, Tooltip } from "@material-ui/core";
+import LibraryAddIcon from "@material-ui/icons/LibraryAdd";
 
 function TaskTable() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -40,6 +42,10 @@ function TaskTable() {
     }
   };
 
+  const handleCreateTask = () => {
+    navigate("/create-task");
+  };
+
   const handleDelete = async (taskId) => {
     try {
       await deleteTask(taskId);
@@ -64,7 +70,14 @@ function TaskTable() {
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         {error && <p className="text-red-500">{error}</p>}
         <div className="table-container p-6">
-          <h1 className="titule mb-4">Lista de atividades</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="titule">Lista de atividades</h1>
+            <Tooltip title="Criar atividade">
+              <IconButton className="mr-15" onClick={handleCreateTask}>
+                <LibraryAddIcon />
+              </IconButton>
+            </Tooltip>
+          </div>
           <table className="min-w-full bg-white border rounded-lg shadow-lg">
             <thead className="table-header">
               <tr>

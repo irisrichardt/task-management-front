@@ -22,7 +22,6 @@ function CreateDev({ isEditMode = false }) {
       fetchDevById(id)
         .then((dev) => {
           setUsername(dev.username);
-          setPassword(dev.password);
           setName(dev.name);
           setBirthDate(dev.birthDate);
           setGender(dev.gender);
@@ -38,20 +37,13 @@ function CreateDev({ isEditMode = false }) {
     e.preventDefault();
     try {
       if (isEditMode) {
-        await updateDev(id, {
-          username,
-          password,
-          name,
-          birthDate,
-          gender,
-          email,
-        });
+        await updateDev(id, username, name, birthDate, gender, email);
       } else {
         await createDev({ username, password, name, birthDate, gender, email });
       }
       setUsername("");
-      setPassword("");
       setName("");
+      setPassword("");
       setBirthDate("");
       setGender("male");
       setEmail("");
@@ -70,7 +62,7 @@ function CreateDev({ isEditMode = false }) {
   }, [created, navigate]);
 
   const handleCancel = () => {
-    navigate("/home");
+    navigate("/users/lista");
   };
 
   return (
@@ -79,11 +71,9 @@ function CreateDev({ isEditMode = false }) {
       <div className={`p-8 ${menuOpen ? "ml-64" : ""}`}>
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-md">
           <h1 className="text-3xl font-bold mb-2 text-left">
-            Novo desenvolvedor
+            {isEditMode ? "Editar desenvolvedor" : "Criar novo desenvolvedor"}
           </h1>
-          <p className="text-lg mb-6 text-left">
-            Preencha o formulário para cadastrar um novo desenvolvedor
-          </p>
+          <p className="text-lg mb-6 text-left">Preencha o formulário abaixo</p>
           <h2 className="text-2xl font-bold mb-6 text-center">
             {isEditMode ? "Editar desenvolvedor" : "Criar novo desenvolvedor"}
           </h2>
@@ -99,17 +89,20 @@ function CreateDev({ isEditMode = false }) {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
-            <div className="form-group">
-              <label className="block text-sm font-medium text-gray-700">
-                Senha
-              </label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
-            </div>
+            {/* Renderizar campo de senha apenas se não estiver em modo de edição */}
+            {!isEditMode && (
+              <div className="form-group">
+                <label className="block text-sm font-medium text-gray-700">
+                  Senha
+                </label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                />
+              </div>
+            )}
             <div className="form-group">
               <label className="block text-sm font-medium text-gray-700">
                 Nome
